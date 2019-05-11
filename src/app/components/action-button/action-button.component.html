@@ -1,0 +1,11 @@
+<div fxLayout="column" class="ks-action"
+     fxLayoutAlign="space-around center">
+    <div>
+        <i class="material-icons"
+           (click)="emitEvents('copy', index)">content_copy</i>
+        <i class="material-icons"
+           (click)="emitEvents('delete', index)">delete</i>
+    </div>
+    <i class="material-icons"
+       (click)="emitEvents('add', index)">note_add</i>
+</div>

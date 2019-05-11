@@ -1,0 +1,12 @@
+@import '../../../variables';
+
+.ks-action{
+    white-space:nowrap;
+}
+.material-icons {
+    font-size: 16px;
+    cursor: pointer;
+}
+.material-icons:hover {
+    color: $actions-button-hover-color;
+}

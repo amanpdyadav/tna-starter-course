@@ -1,0 +1,68 @@
+<div mat-dialog-title>{{ title }}</div>
+
+<div fxLayout="column" fxLayoutGap="10px" mat-dialog-content
+     class="dialog-content">
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <ng-container *ngIf="mode==='login'">
+        <!--Visible if the user is not logged in.-->
+        <button mat-button color="primary" class="google-button"
+                (click)="loginWithGoogle()">
+            <span>Google</span>
+        </button>
+        <label>OR</label>
+    </ng-container>
+
+    <ng-container *ngIf="mode==='resetpassword'">
+        <mat-form-field floatPlaceholder="always">
+            <input matInput type="email" placeholder="Email" [(ngModel)]="formData.email">
+        </mat-form-field>
+    </ng-container>
+
+    <ng-container *ngIf="mode!=='resetpassword'">
+        <div fxLayout="column">
+            <mat-form-field floatPlaceholder="always">
+                <input matInput type="email" placeholder="Email" [(ngModel)]="formData.email">
+            </mat-form-field>
+
+            <mat-form-field floatPlaceholder="always">
+                <input matInput type="password" placeholder="Password" [(ngModel)]="formData.password">
+            </mat-form-field>
+
+            <mat-form-field floatPlaceholder="always" *ngIf="mode==='register'">
+                <input matInput type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+            </mat-form-field>
+        </div>
+    </ng-container>
+    <div fxLayout="column" fxLayoutGap="10px" *ngIf="mode==='login'">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-raised-button color="accent" (click)="closeDialog()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="loginWithEmail()"
+                    [disabled]="!formData.email || !formData.password">Login
+            </button>
+        </div>
+        <a (click)="changeMode('resetpassword')">Forgot Password</a>
+        <a (click)="changeMode('register')">Don't have an account?</a>
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="10px" *ngIf="mode==='register'" [@showAnimation]>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-raised-button color="accent" (click)="changeMode('login')">Back</button>
+            <button mat-raised-button color="primary" (click)="signUp()"
+                    [disabled]="!(formData.email && formData.password && confirmPassword && formData.password === confirmPassword)">
+                Register
+            </button>
+        </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="10px" *ngIf="mode==='resetpassword'" [@showAnimation]>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-raised-button color="accent" (click)="changeMode('login')">Back</button>
+            <button mat-raised-button color="primary" (click)="resetPassword()"
+                    [disabled]="!formData.email">
+                Send
+            </button>
+        </div>
+    </div>
+</div>

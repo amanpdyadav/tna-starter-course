@@ -1,0 +1,38 @@
+<div class="tn-account">
+	<h1>Table</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Event</th>
+
+				<th>Gender</th>
+				<th>Reference</th>
+				<th>Amount</th>
+			</tr>
+		</thead>
+		<tbody>
+			<ng-container *ngFor="let row of listArray;let i=index">
+				<tr>
+					<td>
+						<div fxLayout="row" fxLayoutAlign="space-around center">
+							<!--You can pass the values to child components with big brackets and subscribe the change event from child with braces-->
+							<!--IMPORTANT: we can access the values passed from the child only as $event.-->
+							<action-button [index]="i" [id]="i" (changeEvent)="changeEvent($event)">
+							</action-button>
+							<div>{{ i }}</div>
+						</div>
+					</td>
+
+					<td>TNA member</td>
+					<td>Dashain</td>
+					<td>Male</td>
+
+					<td>123445</td>
+					<td>€ 12.00</td>
+				</tr>
+			</ng-container>
+		</tbody>
+	</table>
+</div>

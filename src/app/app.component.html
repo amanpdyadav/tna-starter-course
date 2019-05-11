@@ -1,0 +1,51 @@
+<div class="tn-main-page" fxLayout="column">
+    <!--Header content of the page
+        1.fxLayout gives the oriantation for the child elements.
+        2.fxLayoutAlign show how they should be aligned
+          (eg: fxLayout="row" fxLayoutAlign="space-between center" -> meaning children should be in a row and each item
+           should have a space around them except the first one can have only right space and last one can have only left space.)
+        3.fxFlex means takes all the space left over fxFlex="80px" will have width of 80px if fxLayout is row else height will be
+            80px if the layout is column-->
+
+    <!--Header to have 80px height-->
+    <div class="tn-title-container" fxFlex="80px"
+         fxLayout="row" fxLayoutAlign="space-between center">
+
+        <!--{{ title }} this is how we can access the variables from the controller.-->
+        <label>{{ title }}</label>
+
+        <!--Visible if the user is not logged in.-->
+        <button mat-button color="accent" *ngIf="!authService.canActivate()" (click)="login()">Login</button>
+
+        <!--We can access the observable variables with the async pipes. And is visible only if the user is logged in-->
+        <div fxLayout=column *ngIf="authService.canActivate()">
+          <small style="font-weight:normal;font-size: 16px;">{{authService.currentUser()?.displayName}}</small>
+          <button mat-button (click)="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div fxFlex="60px">
+        <nav mat-tab-nav-bar>
+            <ng-container *ngFor="let link of navigationTabs">
+                <a mat-tab-link *ngIf="link!=='events' || (link==='events' && authService.canActivate())"
+                   [routerLink]="link"
+                   routerLinkActive #rla="routerLinkActive"
+                   [active]="rla.isActive">
+                    {{link}}
+                </a>
+            </ng-container>
+        </nav>
+    </div>
+
+    <!--Takes the rest of the height-->
+    <div class="router-content">
+        <router-outlet></router-outlet>
+    </div>
+
+    <!--Footer to have 60px height-->
+    <div class="tn-footer-container" fxFlex="60px"
+         fxLayout="row" fxLayoutAlign="center center">
+        <p>©2017 TNA</p>
+    </div>
+</div>
+

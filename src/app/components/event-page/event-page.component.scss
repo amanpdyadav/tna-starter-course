@@ -1,0 +1,22 @@
+@import '../../../variables';
+
+.tn-event {
+    mat-card {
+        width: calc(100% - 20px);
+        margin: 10px;
+        padding: 10px;
+        min-height: 100px;
+        img {
+            width: 200px;
+        }
+        .tn-card-content {
+            div {
+                border-bottom: 1px solid $color-background;
+                padding-right: 20px;
+                label {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

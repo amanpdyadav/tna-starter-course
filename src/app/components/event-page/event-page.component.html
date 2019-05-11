@@ -1,0 +1,12 @@
+<div class="tn-event" fxLayout="column" fxLayoutAlign=" center" *ngIf="events && events.length > 0">
+    <mat-card fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="20px" *ngFor="let evt of events">
+        <img [src]="evt.img">
+        <div fxLayout="column" class="tn-card-content">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <label>{{ evt.title }}</label>
+                <p>{{ evt.date | date:'dd.MM.y'}}</p>
+            </div>
+            <p>{{ evt.content }}</p>
+        </div>
+    </mat-card>
+</div>

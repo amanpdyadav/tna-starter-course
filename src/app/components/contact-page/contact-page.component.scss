@@ -1,0 +1,17 @@
+@import '../../../variables';
+
+.tn-contact {
+    padding: 0 20px;
+    mat-input-container {
+        width: 50%;
+    }
+    button {
+        width: 25%;
+    }
+    /deep/ textarea {
+        height: 200px;
+    }
+    /deep/ .mat-button-wrapper{
+        color: $color-background-white;
+    }
+}

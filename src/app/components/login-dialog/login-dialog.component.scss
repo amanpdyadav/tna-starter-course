@@ -1,0 +1,21 @@
+@import '../../../variables.scss';
+
+.dialog-content {
+  width: 300px;
+  min-height: 300px;
+  .google-button {
+    width: 100%;
+    span {
+      margin-right: 20px;
+    }
+  }
+  label {
+    text-align: center;
+  }
+  a {
+    cursor: pointer;
+  }
+  .error {
+    color: red;
+  }
+}
